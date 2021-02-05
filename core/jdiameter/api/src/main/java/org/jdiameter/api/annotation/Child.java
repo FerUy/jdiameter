@@ -59,8 +59,8 @@ import java.lang.annotation.Target;
 public @interface Child {
 
   /**
-   * Return reference to child class or interface with AvpDscr annotation
-   * @return reference to child class or interface with AvpDscr annotation
+   * Return points to child class or interface with AvpDscr annotation
+   * @return points to child class or interface with AvpDscr annotation
    */
   Class<?> ref();
 

@@ -47,6 +47,7 @@ import org.jdiameter.common.impl.app.sh.PushNotificationRequestImpl;
 import org.jdiameter.common.impl.app.sh.SubscribeNotificationsAnswerImpl;
 import org.jdiameter.common.impl.app.sh.UserDataAnswerImpl;
 import org.mobicents.diameter.stack.functional.Utils;
+import org.mobicents.diameter.stack.functional.sh.AbstractShServer;
 
 /**
  * Base implementation of Server
@@ -54,7 +55,7 @@ import org.mobicents.diameter.stack.functional.Utils;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
-public class ServerPNR extends org.mobicents.diameter.stack.functional.sh.AbstractServer {
+public class ServerPNR extends AbstractShServer {
 
   protected boolean sentSubscribeNotifications;
   protected boolean sentProfileUpdate;
@@ -292,4 +293,31 @@ public class ServerPNR extends org.mobicents.diameter.stack.functional.sh.Abstra
     return receivePushNotification;
   }
 
+
+  @Override
+  protected String getWildcardedPublicIdentity() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.19
+    String wpi = "sip:*@be-connect.us";
+    return wpi;
+  }
+
+  @Override
+  protected String getWildcardedIMPU() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.20
+    String wimpu = "tel:+598*";
+    return wimpu;
+  }
+
+  @Override
+  protected byte[] getUserData() {
+    String userDataString = "121314151617181920";
+    byte[] userData = userDataString.getBytes();
+    return userData;
+  }
+
+  @Override
+  protected long getOcFeatureVector() {
+    long ocFeatureVector = 2L;
+    return ocFeatureVector;
+  }
 }

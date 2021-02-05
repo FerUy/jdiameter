@@ -117,7 +117,7 @@ public abstract class AbstractSLhClient extends TBase implements ClientSLhSessio
         return this.clientSLhSession;
     }
 
-  // ----------- 3GPP TS 29.173 v14.0.0 reference ----------- //
+  // ----------- 3GPP TS 29.173 v14.0.0 points ----------- //
 /*
   5.2.1	Send Routing Information for LCS
   5.2.1.1	General
@@ -131,7 +131,7 @@ public abstract class AbstractSLhClient extends TBase implements ClientSLhSessio
 
   protected LCSRoutingInfoRequest createRIR(ClientSLhSession slhSession) throws Exception {
   /*
-  3GPP TS 29.173 v14.0.0 reference
+  3GPP TS 29.173 v14.0.0 points
   6.2.3	LCS-Routing-Info-Request (RIR) Command
   The LCS-Routing-Info-Request (RIR) command, indicated by the Command-Code field set to 8388622
   and the "R" bit set in the Command Flags field, is sent from GMLC to HSS.

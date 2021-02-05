@@ -102,7 +102,7 @@ public class TLSClientConnection implements IConnection {
       if (ref == null) {
         throw new Exception("Can not create connection without TLS parameters");
       }
-      logger.trace("Initializing TLS with reference '{}'", ref);
+      logger.trace("Initializing TLS with points '{}'", ref);
       fillSecurityData(config, ref);
     }
     catch (Exception e) {
@@ -123,7 +123,7 @@ public class TLSClientConnection implements IConnection {
       if (ref == null) {
         throw new Exception("Can not create connection without TLS parameters");
       }
-      logger.trace("Initializing TLS with reference '{}'", ref);
+      logger.trace("Initializing TLS with points '{}'", ref);
       fillSecurityData(config, ref);
     }
     catch (Exception e) {
@@ -155,7 +155,7 @@ public class TLSClientConnection implements IConnection {
   private void fillSecurityData(Configuration config, String ref) throws Exception {
     sslConfig = TLSUtils.getSSLConfiguration(config, ref);
     if (sslConfig == null) {
-      throw new Exception("Incorrect reference to secutity data");
+      throw new Exception("Incorrect points to secutity data");
     }
     this.factory = getSSLContext(sslConfig);
   }

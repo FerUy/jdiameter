@@ -147,7 +147,8 @@ public class ShClientSessionImpl extends ShSession implements ClientShSession, E
           break;
 
         case RECEIVE_USER_DATA_ANSWER:
-          listener.doUserDataAnswerEvent(this, (UserDataRequest) localEvent.getRequest(), new UserDataAnswerImpl((Answer) localEvent.getAnswer().getMessage()));
+          //listener.doUserDataAnswerEvent(this, (UserDataRequest) localEvent.getRequest(), new UserDataAnswerImpl((Answer) localEvent.getAnswer().getMessage()));
+          listener.doUserDataAnswerEvent(this, null, new UserDataAnswerImpl((Answer) localEvent.getAnswer().getMessage()));
           break;
 
         case RECEIVE_SUBSCRIBE_NOTIFICATIONS_ANSWER:

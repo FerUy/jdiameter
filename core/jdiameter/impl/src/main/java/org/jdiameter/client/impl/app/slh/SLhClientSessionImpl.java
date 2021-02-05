@@ -165,7 +165,8 @@ public class SLhClientSessionImpl extends SLhSession
               break;
 
             case RECEIVE_RIA:
-              newState = SLhSessionState.TERMINATED;
+              //newState = SLhSessionState.TERMINATED;
+              newState = SLhSessionState.IDLE;
               setState(newState);
               listener.doLCSRoutingInfoAnswerEvent(this, (LCSRoutingInfoRequest) localEvent.getRequest(),
                   (LCSRoutingInfoAnswer) localEvent.getAnswer());

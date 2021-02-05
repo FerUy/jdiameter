@@ -36,6 +36,8 @@ import org.jdiameter.api.slg.events.ProvideLocationAnswer;
 import org.mobicents.diameter.stack.functional.Utils;
 import org.mobicents.diameter.stack.functional.slg.AbstractSLgClient;
 
+import java.util.Arrays;
+
 /**
  *
  * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
@@ -390,7 +392,7 @@ public class ClientSLg extends AbstractSLgClient {
   protected byte[] getLCSReferenceNumber() {
   /*
     3GPP TS 29.172 v13.0.0 section 7.4.37
-      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the reference number identifying the deferred location request.
+      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the points number identifying the deferred location request.
   */
     String lcsRefNumber = "4C4353353739";
     byte[] lcsRefNum = lcsRefNumber.getBytes();
@@ -525,9 +527,12 @@ public class ClientSLg extends AbstractSLgClient {
         *[ AVP ]
     If not included, the default value of Periodic-Location-Support-Indicator shall be considered as "NOT_SUPPORTED" (0).
   */
-    String vPlmnIdList = "222";
+    String[] visitedPlmnIdList = {"598", "571", "502", "503"};
+    byte[] visitedPlmnIdListByteArray = Arrays.toString(visitedPlmnIdList).getBytes();
+    return visitedPlmnIdListByteArray;
+    /*String vPlmnIdList = "222";
     byte[] visitedPlmnIdList = vPlmnIdList.getBytes();
-    return visitedPlmnIdList;
+    return visitedPlmnIdList;*/
   }
 
   @Override
@@ -631,7 +636,7 @@ public class ClientSLg extends AbstractSLgClient {
   protected byte[] getLCSReferenceNumber() {
   /*
     3GPP TS 29.172 v13.0.0 section 7.4.37
-      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the reference number identifying the deferred location request.
+      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the points number identifying the deferred location request.
   */
     /*String lcsRefNumber = "4C4353353739";
     byte[] lcsRefNum = lcsRefNumber.getBytes();

@@ -21,6 +21,7 @@
 
 package org.jdiameter.api.slg;
 
+import org.jdiameter.api.AvpDataException;
 import org.jdiameter.api.IllegalDiameterStateException;
 import org.jdiameter.api.InternalException;
 import org.jdiameter.api.OverloadException;
@@ -44,7 +45,7 @@ public interface ClientSLgSessionListener {
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException;
 
   void doProvideLocationAnswerEvent(ClientSLgSession session, ProvideLocationRequest request, ProvideLocationAnswer answer)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException;
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException;
 
   void doLocationReportRequestEvent(ClientSLgSession session, LocationReportRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException;

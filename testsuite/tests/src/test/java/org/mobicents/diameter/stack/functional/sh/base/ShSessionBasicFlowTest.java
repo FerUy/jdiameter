@@ -52,16 +52,14 @@ import org.junit.runners.Parameterized.Parameters;
 @RunWith(Parameterized.class)
 public class ShSessionBasicFlowTest {
   // TODO: add test on replicated nodes ?
-  private Client clientNode;
-  private Server serverNode1;
+  private ClientSh clientNode;
+  private ServerSh serverNode1;
   private URI clientConfigURI;
   private URI serverNode1ConfigURI;
 
   /**
-   * @param clientNode
-   * @param node1
-   * @param node2
-   * @param serverCount
+   * @param clientConfigUrl
+   * @param serverNode1ConfigURL
    */
   public ShSessionBasicFlowTest(String clientConfigUrl, String serverNode1ConfigURL) throws Exception {
     super();
@@ -71,8 +69,8 @@ public class ShSessionBasicFlowTest {
 
   @Before
   public void setUp() throws Exception {
-    this.clientNode = new Client();
-    this.serverNode1 = new Server();
+    this.clientNode = new ClientSh();
+    this.serverNode1 = new ServerSh();
 
     this.serverNode1.init(new FileInputStream(new File(this.serverNode1ConfigURI)), "SERVER1");
     this.serverNode1.start();
@@ -128,10 +126,10 @@ public class ShSessionBasicFlowTest {
   public void testMultipleMessage() throws Exception {
     try {
       // pain of parameter tests :) ?
-      clientNode.sendUserData();
+      clientNode.sendUserDataRequest();
       waitForMessage();
 
-      serverNode1.sendUserData();
+      serverNode1.sendUserDataAnswer();
       waitForMessage();
 
       clientNode.sendProfileUpdate();

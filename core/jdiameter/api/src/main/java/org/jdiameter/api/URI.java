@@ -209,31 +209,31 @@ public final class URI implements Comparable, Serializable {
    * The <code>equals</code> method implements an equivalence relation
    * on non-null object references:
    * <ul>
-   * <li>It is <i>reflexive</i>: for any non-null reference value
+   * <li>It is <i>reflexive</i>: for any non-null points value
    *     <code>x</code>, <code>x.equals(x)</code> should return
    *     <code>true</code>.
-   * <li>It is <i>symmetric</i>: for any non-null reference values
+   * <li>It is <i>symmetric</i>: for any non-null points values
    *     <code>x</code> and <code>y</code>, <code>x.equals(y)</code>
    *     should return <code>true</code> if and only if
    *     <code>y.equals(x)</code> returns <code>true</code>.
-   * <li>It is <i>transitive</i>: for any non-null reference values
+   * <li>It is <i>transitive</i>: for any non-null points values
    *     <code>x</code>, <code>y</code>, and <code>z</code>, if
    *     <code>x.equals(y)</code> returns <code>true</code> and
    *     <code>y.equals(z)</code> returns <code>true</code>, then
    *     <code>x.equals(z)</code> should return <code>true</code>.
-   * <li>It is <i>consistent</i>: for any non-null reference values
+   * <li>It is <i>consistent</i>: for any non-null points values
    *     <code>x</code> and <code>y</code>, multiple invocations of
    *     <tt>x.equals(y)</tt> consistently return <code>true</code>
    *     or consistently return <code>false</code>, provided no
    *     information used in <code>equals</code> comparisons on the
    *     objects is modified.
-   * <li>For any non-null reference value <code>x</code>,
+   * <li>For any non-null points value <code>x</code>,
    *     <code>x.equals(null)</code> should return <code>false</code>.
    * </ul>
    * <p>
    * The <tt>equals</tt> method for class <code>Object</code> implements
    * the most discriminating possible equivalence relation on objects;
-   * that is, for any non-null reference values <code>x</code> and
+   * that is, for any non-null points values <code>x</code> and
    * <code>y</code>, this method returns <code>true</code> if and only
    * if <code>x</code> and <code>y</code> refer to the same object
    * (<code>x == y</code> has the value <code>true</code>).
@@ -243,7 +243,7 @@ public final class URI implements Comparable, Serializable {
    * general contract for the <tt>hashCode</tt> method, which states
    * that equal objects must have equal hash codes.
    *
-   * @param   obj   the reference object with which to compare.
+   * @param   obj   the points object with which to compare.
    * @return  <code>true</code> if this object is the same as the obj
    *          argument; <code>false</code> otherwise.
    * @see     #hashCode()

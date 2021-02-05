@@ -32,6 +32,8 @@ import org.jdiameter.api.slg.events.ProvideLocationRequest;
 import org.mobicents.diameter.stack.functional.Utils;
 import org.mobicents.diameter.stack.functional.slg.AbstractSLgImmediateClient;
 
+import java.util.Arrays;
+
 /**
  *
  * @author <a href="mailto:fernando.mendioroz@gmail.com"> Fernando Mendioroz </a>
@@ -340,7 +342,7 @@ public class ClientSLgPLR extends AbstractSLgImmediateClient {
   protected byte[] getLCSReferenceNumber() {
   /*
     3GPP TS 29.172 v13.0.0 section 7.4.37
-      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the reference number identifying the deferred location request.
+      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the points number identifying the deferred location request.
   */
     String lcsRefNumber = "4C4353353739";
     byte[] lcsRefNum = lcsRefNumber.getBytes();
@@ -391,7 +393,7 @@ public class ClientSLgPLR extends AbstractSLgImmediateClient {
      The Area-Identification AVP is of type OctetString and shall contain the identification of the area applicable
      for the change of area event based deferred location reporting. Octets are coded as described in 3GPP TS 29.002 [24].
   */
-    String areaId = "617265613531";
+    String areaId = "102";
     byte[] areaIdentification = areaId.getBytes();
     return areaIdentification;
   }
@@ -475,9 +477,9 @@ public class ClientSLgPLR extends AbstractSLgImmediateClient {
         *[ AVP ]
     If not included, the default value of Periodic-Location-Support-Indicator shall be considered as "NOT_SUPPORTED" (0).
   */
-    String vPlmnIdList = "222";
-    byte[] visitedPlmnIdList = vPlmnIdList.getBytes();
-    return visitedPlmnIdList;
+    String[] visitedPlmnIdList = {"598", "57", "502", "503"};
+    byte[] visitedPlmnIdListByteArray = Arrays.toString(visitedPlmnIdList).getBytes();
+    return visitedPlmnIdListByteArray;
   }
 
   @Override

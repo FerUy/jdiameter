@@ -23,6 +23,7 @@ package org.jdiameter.common.impl.app.slg;
 
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
+import org.jdiameter.api.AvpDataException;
 import org.jdiameter.api.IllegalDiameterStateException;
 import org.jdiameter.api.InternalException;
 import org.jdiameter.api.OverloadException;
@@ -250,14 +251,14 @@ public class SLgSessionFactoryImpl implements ISLgSessionFactory, ServerSLgSessi
   }
 
   public void doProvideLocationRequestEvent(ServerSLgSession appSession, ProvideLocationRequest request)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException {
     logger.info("Diameter SLg Session Factory :: doProvideLocationRequestEvent :: appSession[{}], Request[{}]", appSession,
         request);
   }
 
   public void doProvideLocationAnswerEvent(ClientSLgSession appSession, ProvideLocationRequest request,
                                            ProvideLocationAnswer answer)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException {
     logger.info("Diameter SLg Session Factory :: doProvideLocationAnswerEvent :: appSession[{}], Request[{}], Answer[{}]",
         new Object[] { appSession, request, answer });
   }
@@ -278,7 +279,7 @@ public class SLgSessionFactoryImpl implements ISLgSessionFactory, ServerSLgSessi
 
   public void doLocationReportAnswerEvent(ServerSLgSession appSession, LocationReportRequest request,
                                           LocationReportAnswer answer)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException {
     logger.info("Diameter SLg Session Factory :: doLocationReportAnswerEvent :: appSession[{}], Request[{}], Answer[{}]",
         new Object[] { appSession, request, answer });
   }

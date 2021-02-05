@@ -289,7 +289,7 @@ public class ChargingServerSimulator extends CCASessionFactoryImpl implements Ne
                 // Restriction-Filter-Rule AVP or the Filter-Id AVP SHOULD be present.
                 //
                 // The Filter-Id AVP is defined in [NASREQ].  The Filter-Id AVP can be
-                // used to reference an IP filter list installed in the access device by
+                // used to points an IP filter list installed in the access device by
                 // means other than the Diameter credit-control application, e.g.,
                 // locally configured or configured by another entity.
                 //

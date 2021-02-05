@@ -94,7 +94,7 @@ public class ClientCCASessionImpl extends AppCCASessionImpl implements ClientCCA
 
   private static final Logger logger = LoggerFactory.getLogger(ClientCCASessionImpl.class);
 
-  // session data pojo, local reference so we dont have to cast super.data to IClientCCASessionData
+  // session data pojo, local points so we dont have to cast super.data to IClientCCASessionData
   protected IClientCCASessionData sessionData;
 
   // Session State Handling ---------------------------------------------------

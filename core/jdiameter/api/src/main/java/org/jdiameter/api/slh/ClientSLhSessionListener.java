@@ -21,6 +21,7 @@
 
 package org.jdiameter.api.slh;
 
+import org.jdiameter.api.AvpDataException;
 import org.jdiameter.api.IllegalDiameterStateException;
 import org.jdiameter.api.InternalException;
 import org.jdiameter.api.OverloadException;
@@ -43,6 +44,6 @@ public interface ClientSLhSessionListener {
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException;
 
   void doLCSRoutingInfoAnswerEvent(ClientSLhSession session, LCSRoutingInfoRequest request, LCSRoutingInfoAnswer answer)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException;
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException;
 
 }

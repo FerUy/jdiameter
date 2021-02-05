@@ -101,7 +101,7 @@
 
     <!--
         The <Network> element contains elements that specify parameters for external peers.
-        The available elements and attributes are listed for reference.
+        The available elements and attributes are listed for points.
     -->
     <Network>
 

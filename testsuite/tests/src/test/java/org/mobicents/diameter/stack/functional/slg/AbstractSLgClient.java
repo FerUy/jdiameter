@@ -131,7 +131,7 @@ public abstract class AbstractSLgClient extends TBase implements ClientSLgSessio
     this.serverSLgSession = stack.getSession(sessionId, ServerSLgSession.class);
   }
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.2	Provide Subscriber Location
   6.2.1	General
@@ -182,7 +182,7 @@ public abstract class AbstractSLgClient extends TBase implements ClientSLgSessio
 
   protected ProvideLocationRequest createPLR(ClientSLgSession slgSession) throws Exception {
   /*
-  3GPP TS 29.172 v14.1.0 reference
+  3GPP TS 29.172 v14.1.0 points
   7.3.1	Provide-Location-Request (PLR) Command
   The Provide-Location-Request (PLR) command, indicated by the Command-Code field set to 8388620 and
   the ‘R’ bit set in the Command Flags field, is sent by the GMLC in order to request subscriber location
@@ -475,7 +475,7 @@ public abstract class AbstractSLgClient extends TBase implements ClientSLgSessio
     return plr;
   }
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.3	Subscriber Location Report
   6.3.1	General
@@ -497,7 +497,7 @@ public abstract class AbstractSLgClient extends TBase implements ClientSLgSessio
 
   public LocationReportAnswer createLRA(LocationReportRequest lrr, long resultCode) throws Exception {
   /*
-  3GPP TS 29.172 v14.1.0 reference
+  3GPP TS 29.172 v14.1.0 points
   7.3.4	Location-Report-Answer (LRA) Command
   The Location-Report-Answer (LRA) command, indicated by the Command-Code field set to 8388621 and
   the ‘R’ bit cleared in the Command Flags field, is sent by the GMLC to the MME or SGSN in response

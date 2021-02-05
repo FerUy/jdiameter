@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sh-Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ShDataType_Rel8.xsd">
+    <CSLocationInformation>
+        <LocationNumber>hJcGkZMAgAM=</LocationNumber>
+        <ServiceAreaId>BfKRBb8xHQ==</ServiceAreaId>
+        <VLRNumber>kQaRkwCA8w==</VLRNumber>
+        <CurrentLocationRetrieved>0</CurrentLocationRetrieved>
+        <AgeOfLocationInformation>0</AgeOfLocationInformation>
+    </CSLocationInformation>
+</Sh-Data>

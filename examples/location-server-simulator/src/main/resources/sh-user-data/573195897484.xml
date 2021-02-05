@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Sh-Data xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <CSLocationInformation>
+        <LocationNumber>hJdlMCRFmQk=</LocationNumber>
+        <CellGlobalId>NzIBAAFOSg==</CellGlobalId>
+        <GeographicalInformation>EBu2ELlt9wA=</GeographicalInformation>
+        <GeodeticInformation>AxCiJcdOOq8ZAQ==</GeodeticInformation>
+        <VLRNumber>
+            <Address>NTk4OTc4OTM1==</Address>
+        </VLRNumber>
+        <MSCNumber>
+            <Address>NTk4OTc4OTM0==</Address>
+        </MSCNumber>
+        <CurrentLocationRetrieved>0</CurrentLocationRetrieved>
+        <AgeOfLocationInformation>0</AgeOfLocationInformation>
+    </CSLocationInformation>
+</Sh-Data>

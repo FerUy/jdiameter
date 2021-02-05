@@ -125,7 +125,7 @@ public abstract class AbstractSLgDeferredClient extends TBase implements ClientS
     fail("Received \"LRR\" event, request[" + request + "], on session[" + session + "]", null);
   }
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.3	Subscriber Location Report
   6.3.1	General
@@ -143,7 +143,7 @@ public abstract class AbstractSLgDeferredClient extends TBase implements ClientS
 
   public LocationReportAnswer createLRA(LocationReportRequest lrr, long resultCode) throws Exception {
   /*
-  3GPP TS 29.172 v14.1.0 reference
+  3GPP TS 29.172 v14.1.0 points
   7.3.4	Location-Report-Answer (LRA) Command
   The Location-Report-Answer (LRA) command, indicated by the Command-Code field set to 8388621 and
   the ‘R’ bit cleared in the Command Flags field, is sent by the GMLC to the MME or SGSN in response

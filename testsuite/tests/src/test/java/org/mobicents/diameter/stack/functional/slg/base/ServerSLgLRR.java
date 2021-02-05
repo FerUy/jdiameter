@@ -171,7 +171,7 @@ public class ServerSLgLRR extends AbstractSLgDeferredServer {
   protected byte[] getLCSReferenceNumber() {
   /*
     3GPP TS 29.172 v13.0.0 section 7.4.37
-      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the reference number identifying the deferred location request.
+      The LCS-Reference-Number AVP is of type OctetString of length 1. It shall contain the points number identifying the deferred location request.
   */
     String lcsRefNumber = "4C4353353739";
     byte[] lcsRefNum = lcsRefNumber.getBytes();

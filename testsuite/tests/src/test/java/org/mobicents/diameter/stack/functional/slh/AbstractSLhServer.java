@@ -118,7 +118,7 @@ public abstract class AbstractSLhServer extends TBase implements ServerSLhSessio
     return this.serverSLhSession;
   }
 
-// ----------- 3GPP TS 29.173 v14.0.0 reference ----------- //
+// ----------- 3GPP TS 29.173 v14.0.0 points ----------- //
 /*
   5.2.1	Send Routing Information for LCS
   5.2.1.1	General
@@ -167,7 +167,7 @@ public abstract class AbstractSLhServer extends TBase implements ServerSLhSessio
   public LCSRoutingInfoAnswer createRIA(LCSRoutingInfoRequest rir, long resultCode) throws Exception {
 
 /*
-  3GPP TS 29.173 v14.0.0 reference
+  3GPP TS 29.173 v14.0.0 points
   6.2.4	LCS-Routing-Info-Answer (RIA) Command
   The LCS-Routing-Info-Answer (RIA) command, indicated by the Command-Code field set to 8388622 and the 'R' bit cleared in the Command Flags field, is sent from HSS to GMLC.
   Message Format:

@@ -160,7 +160,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
     The EUTRAN-Positioning-Data AVP is of type OctetString.
     It shall contain the encoded content of the "Positioning-Data" Information Element as defined in 3GPP TS 29.171 [7].
 */
-    String eutran = "654E423435336C7465613233";
+    String eutran = "42";
     byte[] eutranPositioningData = eutran.getBytes();
     return eutranPositioningData;
   }
@@ -172,7 +172,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
     The ECGI AVP is of type OctetString. It indicates the E-UTRAN Cell Global Identifier.
     It is coded according to clause 8.21.5, in 3GPP TS 29.274 [8].
 */
-    String eCgi = "654E4239343337";
+    String eCgi = "7870137";
     byte[] ecgi = eCgi.getBytes();
     return ecgi;
   }
@@ -203,7 +203,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
 
   @Override
   protected byte[] getCellGlobalIdentity() {
-    String cgi = "A342784713907";
+    String cgi = "78701378";
     byte[] CellGlobalIdentity = cgi.getBytes();
     return CellGlobalIdentity;
   }
@@ -292,7 +292,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
 
   @Override
   protected long getLCSCapabilitiesSets() {
-    long lcsCapabilitiesSets = 99900123L;
+    long lcsCapabilitiesSets = 6L;
     return lcsCapabilitiesSets;
   }
 
@@ -327,7 +327,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
                                                     (e.g. UE is in extended idle mode DRX or in Power Saving Mode), and that the location information
                                                     will be returned in a subsequent Subscriber Location Report when the UE becomes reachable.
   */
-    long plaFlags = 8L;
+    long plaFlags = 1L;
     return plaFlags;
   }
 
@@ -338,7 +338,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
     The Cell-Portion-ID AVP is of type Unsigned32. It indicates the current Cell Portion location of the target UE as provided by the E-SMLC.
     It shall contain the value of the "Cell Portion ID" Information Element as defined in 3GPP TS 29.171
   */
-    long cellPortionId = 34923L;
+    long cellPortionId = 255L;
     return cellPortionId;
   }
 
@@ -370,7 +370,7 @@ public class ServerSLgPLA extends AbstractSLgImmediateServer {
     The Barometric-Pressure AVP is of type Unsigned32.
     It contains the "Barometric Pressure" Information Element as defined in 3GPP TS 29.171.
   */
-    long barometricPressure = 101327L;
+    long barometricPressure = 1013270L;
     return barometricPressure;
   }
 

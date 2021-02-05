@@ -42,6 +42,7 @@ import org.jdiameter.api.sh.events.UserDataAnswer;
 import org.jdiameter.api.sh.events.UserDataRequest;
 import org.jdiameter.common.impl.app.sh.UserDataAnswerImpl;
 import org.mobicents.diameter.stack.functional.Utils;
+import org.mobicents.diameter.stack.functional.sh.AbstractShServer;
 
 /**
  * Base implementation of Server
@@ -49,23 +50,23 @@ import org.mobicents.diameter.stack.functional.Utils;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
-public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.AbstractServer {
+public class ServerUDR extends AbstractShServer {
 
   protected boolean sentSubscribeNotifications;
   protected boolean sentProfileUpdate;
-  protected boolean sentUserData;
+  protected boolean sentUserDataAnswer;
   protected boolean sentPushNotification;
-  protected boolean receiveSubscribeNotifications;
-  protected boolean receiveProfileUpdate;
-  protected boolean receiveUserData;
-  protected boolean receivePushNotification;
+  protected boolean receivedSubscribeNotifications;
+  protected boolean receivedProfileUpdate;
+  protected boolean receivedUserDataRequest;
+  protected boolean receivedPushNotification;
 
   protected UserDataRequest userDataRequest;
 
   // ------- send methods to trigger answer
 
   public void sendUserData() throws Exception {
-    if (!this.receiveUserData || this.userDataRequest == null) {
+    if (!this.receivedUserDataRequest || this.userDataRequest == null) {
       fail("Did not receive USER DATA or answer already sent.", null);
       throw new Exception("Did not receive USER DATA or answer already sent. Request: " + this.userDataRequest);
     }
@@ -82,6 +83,21 @@ public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.Abstra
 
     Utils.printMessage(log, super.stack.getDictionary(), answer.getMessage(), true);
     this.userDataRequest = null;
+  }
+
+  public void sendUserDataAnswer() throws Exception {
+    if (!receivedUserDataRequest || userDataRequest == null) {
+      fail("Did not receive RIR or answer already sent.", null);
+      throw new Exception("Did not receive RIR or answer already sent. Request: " + this.userDataRequest);
+    }
+
+    UserDataAnswer uda = super.createUDA(userDataRequest, 2001);
+
+    super.serverShSession.sendUserDataAnswer(uda);
+
+    this.sentUserDataAnswer = true;
+    userDataRequest = null;
+    Utils.printMessage(log, super.stack.getDictionary(), uda.getMessage(), isSentUserDataAnswer());
   }
 
   // ------- initial, this will be triggered for first msg.
@@ -131,14 +147,14 @@ public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.Abstra
   @Override
   public void doSubscribeNotificationsRequestEvent(ServerShSession session, SubscribeNotificationsRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    this.receiveSubscribeNotifications = true;
+    this.receivedSubscribeNotifications = true;
     fail("Received \"SNR\" event, request[" + request + "], on session[" + session + "]", null);
   }
 
   @Override
   public void doProfileUpdateRequestEvent(ServerShSession session, ProfileUpdateRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    this.receiveProfileUpdate = true;
+    this.receivedProfileUpdate = true;
     fail("Received \"PUR\" event, request[" + request + "], on session[" + session + "]", null);
   }
 
@@ -146,16 +162,16 @@ public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.Abstra
   public void doPushNotificationAnswerEvent(ServerShSession session, PushNotificationRequest request, PushNotificationAnswer answer) throws InternalException,
   IllegalDiameterStateException, RouteException, OverloadException {
     fail("Received \"PNA\" event, request[" + request + "], answer[" + answer + "], on session[" + session + "]", null);
-    this.receivePushNotification = true;
+    this.receivedPushNotification = true;
   }
 
   @Override
   public void doUserDataRequestEvent(ServerShSession session, UserDataRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    if (this.receiveUserData) {
+    if (this.receivedUserDataRequest) {
       fail("Received USER DATA more than once!", null);
     }
-    this.receiveUserData = true;
+    this.receivedUserDataRequest = true;
     this.userDataRequest = request;
   }
 
@@ -177,8 +193,8 @@ public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.Abstra
     return sentProfileUpdate;
   }
 
-  public boolean isSentUserData() {
-    return sentUserData;
+  public boolean isSentUserDataAnswer() {
+    return sentUserDataAnswer;
   }
 
   public boolean isSentPushNotification() {
@@ -186,19 +202,46 @@ public class ServerUDR extends org.mobicents.diameter.stack.functional.sh.Abstra
   }
 
   public boolean isReceiveSubscribeNotifications() {
-    return receiveSubscribeNotifications;
+    return receivedSubscribeNotifications;
   }
 
   public boolean isReceiveProfileUpdate() {
-    return receiveProfileUpdate;
+    return receivedProfileUpdate;
   }
 
   public boolean isReceiveUserData() {
-    return receiveUserData;
+    return receivedUserDataRequest;
   }
 
   public boolean isReceivePushNotification() {
-    return receivePushNotification;
+    return receivedPushNotification;
   }
 
+
+  @Override
+  protected String getWildcardedPublicIdentity() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.19
+    String wpi = "sip:*@be-connect.us";
+    return wpi;
+  }
+
+  @Override
+  protected String getWildcardedIMPU() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.20
+    String wimpu = "tel:+598*";
+    return wimpu;
+  }
+
+  @Override
+  protected byte[] getUserData() {
+    String userDataString = "121314151617181920";
+    byte[] userData = userDataString.getBytes();
+    return userData;
+  }
+
+  @Override
+  protected long getOcFeatureVector() {
+    long ocFeatureVector = 2L;
+    return ocFeatureVector;
+  }
 }

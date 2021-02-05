@@ -4395,6 +4395,16 @@
     <type type-name="DiameterURI" />
   </avpdefn>
 
+  <avpdefn name="OC-Supported-Features" code="621" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <grouped>
+      <avp name="OC-Feature-Vector" />
+    </grouped>
+  </avpdefn>
+
+  <avpdefn name="OC-Feature-Vector" code="622" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <type type-name="Unsigned64" />
+  </avpdefn>
+
   <avpdefn name="User-Authorization-Type" code="623" vendor-id="TGPP" mandatory="must" protected="may" may-encrypt="no" vendor-bit="must" >
     <type type-name="Enumerated">
       <enum code="0" name="REGISTRATION" />
@@ -4403,11 +4413,39 @@
     </type>
   </avpdefn>
 
+  <avpdefn name="OC-OLR" code="623" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <grouped>
+      <avp name="OC-Sequence-Number" />
+      <avp name="OC-Report-Type" />
+      <avp name="OC-Reduction-Percentage" />
+      <avp name="OC-Validity-Duration" />
+    </grouped>
+  </avpdefn>
+
   <avpdefn name="User-Data-Already-Available" code="624" vendor-id="TGPP" mandatory="must" protected="may" may-encrypt="no" vendor-bit="must" >
     <type type-name="Enumerated">
       <enum code="0" name="USER_DATA_NOT_AVAILABLE" />
       <enum code="1" name="USER_DATA_ALREADY_AVAILABLE" />
     </type>
+  </avpdefn>
+
+  <avpdefn name="OC-Sequence-Number" code="624" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <type type-name="Unsigned64" />
+  </avpdefn>
+
+  <avpdefn name="OC-Validity-Duration" code="625" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <type type-name="Unsigned32" />
+  </avpdefn>
+
+  <avpdefn name="OC-Report-Type" code="626" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <type type-name="Enumerated">
+      <enum code="0" name="HOST_REPORT" />
+      <enum code="1" name="REALM_REPORT" />
+    </type>
+  </avpdefn>
+
+  <avpdefn name="OC-Reduction-Percentage" code="627" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="mustnot" >
+    <type type-name="Unsigned32" />
   </avpdefn>
 
   <avpdefn name="Supported-Features" code="628" vendor-id="TGPP" mandatory="may" protected="may" may-encrypt="no" vendor-bit="must" >
@@ -4713,7 +4751,7 @@
       <avp name="Origin-Realm" code="296" vendor="0" multiplicity="1" index="-1" />
       <avp name="Associated-Identities" code="632" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Supported-Features" code="628" vendor="10415" multiplicity="0+" index="-1" />
-            <avp name="Identity-with-Emergency-Registration" code="651" vendor="10415" multiplicity="0+" index="-1" />
+      <avp name="Identity-with-Emergency-Registration" code="651" vendor="10415" multiplicity="0+" index="-1" />
       <avp name="Failed-AVP" code="279" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Proxy-Info" code="284" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Route-Record" code="282" vendor="0" multiplicity="0+" index="-1" />
@@ -4725,7 +4763,7 @@
       <avp name="Auth-Session-State" code="277" vendor="0" multiplicity="1" index="-1" />
       <avp name="Origin-Host" code="264" vendor="0" multiplicity="1" index="-1" />
       <avp name="Origin-Realm" code="296" vendor="0" multiplicity="1" index="-1" />
-            <avp name="Destination-Host" code="293" vendor="0" multiplicity="1" index="-1" />
+      <avp name="Destination-Host" code="293" vendor="0" multiplicity="1" index="-1" />
       <avp name="Destination-Realm" code="283" vendor="0" multiplicity="1" index="-1" />
       <avp name="User-Name" code="1" vendor="0" multiplicity="1" index="-1" />
       <avp name="Supported-Features" code="628" vendor="10415" multiplicity="0+" index="-1" />
@@ -4739,8 +4777,8 @@
     <command name="Push-Profile-Answer" code="305" request="false">
       <avp name="Session-Id" code="263" vendor="0" multiplicity="1" index="0" />
       <avp name="Vendor-Specific-Application-Id" code="260" vendor="0" multiplicity="1" index="-1" />
-            <avp name="Result-Code" code="268" vendor="0" multiplicity="0-1" index="-1" />
-            <avp name="Experimental-Result" code="297" vendor="0" multiplicity="0-1" index="-1" />
+      <avp name="Result-Code" code="268" vendor="0" multiplicity="0-1" index="-1" />
+      <avp name="Experimental-Result" code="297" vendor="0" multiplicity="0-1" index="-1" />
       <avp name="Auth-Session-State" code="277" vendor="0" multiplicity="1" index="-1" />
       <avp name="Origin-Host" code="264" vendor="0" multiplicity="1" index="-1" />
       <avp name="Origin-Realm" code="296" vendor="0" multiplicity="1" index="-1" />
@@ -4770,6 +4808,20 @@
       <enum code="16" name="ChargingInformation" />
       <enum code="17" name="MSISDN" />
       <enum code="18" name="PSIActivation" />
+      <enum code="19" name="DSAI" />
+      <enum code="21" name="ServiceLevelTraceInfo" />
+      <enum code="22" name="IPAddressSecureBindingInformation" />
+      <enum code="23" name="ServicePriorityLevel" />
+      <enum code="24" name="SMSRegistrationInfo" />
+      <enum code="25" name="UEReachabilityForIP" />
+      <enum code="26" name="TADSinformation" />
+      <enum code="27" name="STN-SR" />
+      <enum code="28" name="UE-SRVCC-Capability" />
+      <enum code="29" name="ExtendedPriority" />
+      <enum code="30" name="CSRN" />
+      <enum code="31" name="ReferenceLocationInformation" />
+      <enum code="32" name="IMSI" />
+      <enum code="33" name="IMSPrivateUserIdentity" />
     </type>
   </avpdefn>
 
@@ -4803,6 +4855,7 @@
       <enum code="0" name="ALL_IDENTITIES" />
       <enum code="1" name="REGISTERED_IDENTITIES" />
       <enum code="2" name="IMPLICIT_IDENTITIES" />
+      <enum code="3" name="ALIAS_IDENTITIES" />
     </type>
   </avpdefn>
 
@@ -4829,6 +4882,56 @@
 
   <avpdefn name="Requested-Nodes" code="713" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
     <type type-name="Unsigned32" />
+  </avpdefn>
+
+  <avpdefn name="Serving-Node-Indication" code="714" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="Enumerated">
+      <enum code="0" name="ONLY_SERVING_NODES_REQUIRED" />
+    </type>
+  </avpdefn>
+
+  <avpdefn name="Repository-Data-ID" code="715" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <grouped>
+      <avp name="Service-Indication" />
+      <avp name="Sequence-Number" />
+    </grouped>
+  </avpdefn>
+
+  <avpdefn name="Sequence-Number" code="716" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="Unsigned32" />
+  </avpdefn>
+
+  <avpdefn name="Pre-paging-Supported" code="717" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="Enumerated">
+      <enum code="0" name="PREPAGING_NOT_SUPPORTED" />
+      <enum code="1" name="PREPAGING_SUPPORTED" />
+    </type>
+  </avpdefn>
+
+  <avpdefn name="Local-Time-Zone-Indication" code="718" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="Enumerated">
+      <enum code="0" name="ONLY_LOCAL_TIME_ZONE_REQUESTED" />
+      <enum code="1" name="LOCAL_TIME_ZONE_WITH_LOCATION_INFO_REQUESTED" />
+    </type>
+  </avpdefn>
+
+  <avpdefn name="UDR-Flags" code="719" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="Unsigned32" />
+  </avpdefn>
+
+  <avpdefn name="Call-Reference-Info" code="720" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
+    <grouped>
+      <avp name="Call-Reference-Number" />
+      <avp name="AS-Number" />
+    </grouped>
+  </avpdefn>
+
+  <avpdefn name="Call-Reference-Number" code="721" vendor-id="TGPP" mandatory="must" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="OctetString" />
+  </avpdefn>
+
+  <avpdefn name="AS-Number" code="722" vendor-id="TGPP" mandatory="must" protected="may" may-encrypt="no" vendor-bit="must" >
+    <type type-name="OctetString" />
   </avpdefn>
 
   <avpdefn name="Session-Priority" code="650" vendor-id="TGPP" mandatory="mustnot" protected="may" may-encrypt="no" vendor-bit="must" >
@@ -4874,6 +4977,8 @@
       <avp name="Destination-Realm" code="283" vendor="0" multiplicity="1" index="-1" />
       <avp name="Supported-Features" code="628" vendor="10415" multiplicity="0+" index="-1" />
       <avp name="User-Identity" code="700" vendor="10415" multiplicity="1" index="-1" />
+      <avp name="Wildcarded-Public-Identity" code="634" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="Wildcarded-IMPU" code="636" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Server-Name" code="602" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Service-Indication" code="704" vendor="10415" multiplicity="0+" index="-1" />
       <avp name="Data-Reference" code="703" vendor="10415" multiplicity="1+" index="-1" />
@@ -4882,7 +4987,14 @@
       <avp name="Current-Location" code="707" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="DSAI-Tag" code="711" vendor="10415" multiplicity="0+" index="-1" />
       <avp name="Session-Priority" code="650" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="User-Name" code="1" vendor="0" multiplicity="0-1" index="-1" />
       <avp name="Requested-Nodes" code="713" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="Serving-Node-Indication" code="714" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="Pre-paging-Supported" code="717" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="Local-Time-Zone-Indication" code="718" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="UDR-Flags" code="719" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="Call-Reference-Info" code="720" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="OC-Supported-Features" code="720" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Proxy-Info" code="284" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Route-Record" code="282" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Failed-AVP" code="279" vendor="0" multiplicity="0" index="-1" />
@@ -4905,6 +5017,7 @@
       <avp name="Wildcarded-Public-Identity" code="634" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Wildcarded-IMPU" code="636" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="User-Data" code="702" vendor="10415" multiplicity="0-1" index="-1" />
+      <avp name="OC-Supported-Features" code="720" vendor="10415" multiplicity="0-1" index="-1" />
       <avp name="Failed-AVP" code="279" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Proxy-Info" code="284" vendor="0" multiplicity="0+" index="-1" />
       <avp name="Route-Record" code="282" vendor="0" multiplicity="0+" index="-1" />
@@ -6914,16 +7027,6 @@
     <type type-name="Address" />
   </avpdefn>
 
-  <!-- Still to be defined the CODE for this feature
-  <avpdefn name="OC-Supported-Features" code="XXXX" vendor-id="TGPP" mandatory="may" protected="mustnot" may-encrypt="no" vendor-bit="must" >
-    <grouped>
-      <avp name="OC-Feature-Vector" />
-    </grouped>
-  </avpdefn>
-  <avpdefn name="OC-Feature-Vector" code="XXXX" vendor-id="TGPP" mandatory="may" protected="mustnot" may-encrypt="no" vendor-bit="must" >
-     <type type-name="Unsigned64" />
-  </avpdefn>
-  -->
   <avpdefn name="UE-SRVCC-Capability" code="1615" vendor-id="TGPP" mandatory="mustnot" protected="mustnot" may-encrypt="no" vendor-bit="must">
     <type type-name="Enumerated">
       <enum code="0" name="UE_SRVCC_NOT_SUPPORTED"/>

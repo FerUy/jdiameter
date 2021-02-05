@@ -59,13 +59,13 @@ public interface StateMachine {
 
   /**
    * Add a new state change listener
-   * @param listener a reference to the listener that will get information about state changes.
+   * @param listener a points to the listener that will get information about state changes.
    */
   void addStateChangeNotification(StateChangeListener listener);
 
   /**
    * Remove a state change listener
-   * @param listener a reference to the listener that will get information about state changes.
+   * @param listener a points to the listener that will get information about state changes.
    */
   void removeStateChangeNotification(StateChangeListener listener);
 

@@ -183,7 +183,8 @@ public class SLgClientSessionImpl extends SLgSession
               break;
 
             case RECEIVE_PLA:
-              newState = SLgSessionState.TERMINATED;
+              //newState = SLgSessionState.TERMINATED;
+              newState = SLgSessionState.IDLE;
               setState(newState);
               listener.doProvideLocationAnswerEvent(this, (ProvideLocationRequest) localEvent.getRequest(),
                   (ProvideLocationAnswer) localEvent.getAnswer());

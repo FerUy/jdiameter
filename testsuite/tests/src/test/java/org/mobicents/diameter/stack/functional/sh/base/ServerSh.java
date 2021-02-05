@@ -47,6 +47,7 @@ import org.jdiameter.common.impl.app.sh.PushNotificationRequestImpl;
 import org.jdiameter.common.impl.app.sh.SubscribeNotificationsAnswerImpl;
 import org.jdiameter.common.impl.app.sh.UserDataAnswerImpl;
 import org.mobicents.diameter.stack.functional.Utils;
+import org.mobicents.diameter.stack.functional.sh.AbstractShServer;
 
 /**
  * Base implementation of Server
@@ -54,16 +55,16 @@ import org.mobicents.diameter.stack.functional.Utils;
  * @author <a href="mailto:brainslog@gmail.com"> Alexandre Mendonca </a>
  * @author <a href="mailto:baranowb@gmail.com"> Bartosz Baranowski </a>
  */
-public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractServer {
+public class ServerSh extends AbstractShServer {
 
   protected boolean sentSubscribeNotifications;
   protected boolean sentProfileUpdate;
-  protected boolean sentUserData;
+  protected boolean sentUserDataAnswer;
   protected boolean sentPushNotification;
-  protected boolean receiveSubscribeNotifications;
-  protected boolean receiveProfileUpdate;
-  protected boolean receiveUserData;
-  protected boolean receivePushNotification;
+  protected boolean receivedSubscribeNotifications;
+  protected boolean receivedProfileUpdate;
+  protected boolean receivedUserDataRequest;
+  protected boolean receivedPushNotification;
 
   protected SubscribeNotificationsRequest subscribeNotificationsRequest;
   protected ProfileUpdateRequest profileUpdateRequest;
@@ -72,7 +73,7 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
   // ------- send methods to trigger answer
 
   public void sendSubscribeNotifications() throws Exception {
-    if (!this.receiveSubscribeNotifications || this.subscribeNotificationsRequest == null) {
+    if (!this.receivedSubscribeNotifications || this.subscribeNotificationsRequest == null) {
       fail("Did not receive SUBSCRIBE or answer already sent.", null);
       throw new Exception("Did not receive SUBSCRIBE or answer already sent. Request: " + this.subscribeNotificationsRequest);
     }
@@ -92,7 +93,7 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
   }
 
   public void sendProfileUpdate() throws Exception {
-    if (!this.receiveProfileUpdate || this.profileUpdateRequest == null) {
+    if (!this.receivedProfileUpdate || this.profileUpdateRequest == null) {
       fail("Did not receive UPDATE or answer already sent.", null);
       throw new Exception("Did not receive UPDATE or answer already sent. Request: " + this.profileUpdateRequest);
     }
@@ -112,7 +113,7 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
   }
 
   public void sendUserData() throws Exception {
-    if (!this.receiveUserData || this.userDataRequest == null) {
+    if (!this.receivedUserDataRequest || this.userDataRequest == null) {
       fail("Did not receive USER DATA or answer already sent.", null);
       throw new Exception("Did not receive USER DATA or answer already sent. Request: " + this.userDataRequest);
     }
@@ -129,6 +130,21 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
 
     Utils.printMessage(log, super.stack.getDictionary(), answer.getMessage(), true);
     this.userDataRequest = null;
+  }
+
+  public void sendUserDataAnswer() throws Exception {
+    if (!receivedUserDataRequest || userDataRequest == null) {
+      fail("Did not receive RIR or answer already sent.", null);
+      throw new Exception("Did not receive RIR or answer already sent. Request: " + this.userDataRequest);
+    }
+
+    UserDataAnswer uda = super.createUDA(userDataRequest, 2001);
+
+    super.serverShSession.sendUserDataAnswer(uda);
+
+    this.sentUserDataAnswer = true;
+    userDataRequest = null;
+    Utils.printMessage(log, super.stack.getDictionary(), uda.getMessage(), isSentUserDataAnswer());
   }
 
   public void sendPushNotification() throws Exception {
@@ -216,39 +232,39 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
   @Override
   public void doSubscribeNotificationsRequestEvent(ServerShSession session, SubscribeNotificationsRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    if (this.receiveSubscribeNotifications) {
+    if (this.receivedSubscribeNotifications) {
       fail("Received SUBSCRIBE more than once!", null);
     }
-    this.receiveSubscribeNotifications = true;
+    this.receivedSubscribeNotifications = true;
     this.subscribeNotificationsRequest = request;
   }
 
   @Override
   public void doProfileUpdateRequestEvent(ServerShSession session, ProfileUpdateRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    if (this.receiveProfileUpdate) {
+    if (this.receivedProfileUpdate) {
       fail("Received UPDATE more than once!", null);
     }
-    this.receiveProfileUpdate = true;
+    this.receivedProfileUpdate = true;
     this.profileUpdateRequest = request;
   }
 
   @Override
   public void doPushNotificationAnswerEvent(ServerShSession session, PushNotificationRequest request, PushNotificationAnswer answer) throws InternalException,
   IllegalDiameterStateException, RouteException, OverloadException {
-    if (this.receivePushNotification) {
+    if (this.receivedPushNotification) {
       fail("Received NOTIFICATION more than once!", null);
     }
-    this.receivePushNotification = true;
+    this.receivedPushNotification = true;
   }
 
   @Override
   public void doUserDataRequestEvent(ServerShSession session, UserDataRequest request)
       throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
-    if (this.receiveUserData) {
+    if (this.receivedUserDataRequest) {
       fail("Received USER DATA more than once!", null);
     }
-    this.receiveUserData = true;
+    this.receivedUserDataRequest = true;
     this.userDataRequest = request;
   }
 
@@ -259,7 +275,7 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
 
   @Override
   public void timeoutExpired(Request request) {
-    fail("Received \"Timoeout\" event, request[" + request + "]", null);
+    fail("Received \"Timeout\" event, request[" + request + "]", null);
   }
 
   public boolean isSentSubscribeNotifications() {
@@ -270,8 +286,8 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
     return sentProfileUpdate;
   }
 
-  public boolean isSentUserData() {
-    return sentUserData;
+  public boolean isSentUserDataAnswer() {
+    return sentUserDataAnswer;
   }
 
   public boolean isSentPushNotification() {
@@ -279,19 +295,51 @@ public class Server extends org.mobicents.diameter.stack.functional.sh.AbstractS
   }
 
   public boolean isReceiveSubscribeNotifications() {
-    return receiveSubscribeNotifications;
+    return receivedSubscribeNotifications;
   }
 
   public boolean isReceiveProfileUpdate() {
-    return receiveProfileUpdate;
+    return receivedProfileUpdate;
   }
 
   public boolean isReceiveUserData() {
-    return receiveUserData;
+    return receivedUserDataRequest;
   }
 
   public boolean isReceivePushNotification() {
-    return receivePushNotification;
+    return receivedPushNotification;
+  }
+
+
+  //*********************************************************//
+  //***************** UDA methods ***************************//
+  //*********************************************************//
+
+  @Override
+  protected String getWildcardedPublicIdentity() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.19
+    String wpi = "sip:*@be-connect.us";
+    return wpi;
+  }
+
+  @Override
+  protected String getWildcardedIMPU() {
+    // 3GPP TS 29.172 v15.1.0 section 6.3.20
+    String wimpu = "tel:+598*";
+    return wimpu;
+  }
+
+  @Override
+  protected byte[] getUserData() {
+    String userDataString = "121314151617181920";
+    byte[] userData = userDataString.getBytes();
+    return userData;
+  }
+
+  @Override
+  protected long getOcFeatureVector() {
+    long ocFeatureVector = 2L;
+    return ocFeatureVector;
   }
 
 }

@@ -126,7 +126,7 @@ public abstract class AbstractSLgImmediateServer  extends TBase implements Serve
     return this.serverSLgSession;
   }
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.2	Provide Subscriber Location
   6.2.1	General
@@ -167,7 +167,7 @@ public abstract class AbstractSLgImmediateServer  extends TBase implements Serve
 
   public ProvideLocationAnswer createPLA(ProvideLocationRequest plr, long resultCode) throws Exception {
   /*
-  3GPP TS 29.172 v14.1.0 reference
+  3GPP TS 29.172 v14.1.0 points
   7.3.2	Provide-Location-Answer (PLA) Command
   The Provide-Location-Answer (PLA) command, indicated by the Command-Code field set to 8388620 and
   the ‘R’ bit cleared in the Command Flags field, is sent by the MME or SGSN to the GMLC in response

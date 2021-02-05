@@ -58,10 +58,8 @@ public class ShSessionBasicFlowUDRTest {
   private URI serverNode1ConfigURI;
 
   /**
-   * @param clientNode
-   * @param node1
-   * @param node2
-   * @param serverCount
+   * @param clientConfigUrl
+   * @param serverNode1ConfigURL
    */
   public ShSessionBasicFlowUDRTest(String clientConfigUrl, String serverNode1ConfigURL) throws Exception {
     super();
@@ -133,10 +131,10 @@ public class ShSessionBasicFlowUDRTest {
   public void testUserData() throws Exception {
     try {
       // pain of parameter tests :) ?
-      clientNode.sendUserData();
+      clientNode.sendUserDataRequest();
       waitForMessage();
 
-      serverNode1.sendUserData();
+      serverNode1.sendUserDataAnswer();
       waitForMessage();
     }
     catch (Exception e) {

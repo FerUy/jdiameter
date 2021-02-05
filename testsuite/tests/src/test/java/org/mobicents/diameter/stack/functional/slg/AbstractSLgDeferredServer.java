@@ -134,7 +134,7 @@ public abstract class AbstractSLgDeferredServer extends TBase implements ServerS
     return this.serverSLgSession;
   }
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.3	Subscriber Location Report
   6.3.1	General
@@ -143,7 +143,7 @@ public abstract class AbstractSLgDeferredServer extends TBase implements ServerS
   is triggered after receipt of a request for location for a UE transiently not reachable.
 */
 
-  // ----------- 3GPP TS 29.172 v14.1.0 reference ----------- //
+  // ----------- 3GPP TS 29.172 v14.1.0 points ----------- //
 /*
   6.3	Subscriber Location Report
   6.3.1	General
@@ -196,7 +196,7 @@ public abstract class AbstractSLgDeferredServer extends TBase implements ServerS
 
   protected LocationReportRequest createLRR(ServerSLgSession slgSession) throws Exception {
   /*
-  3GPP TS 29.172 v14.1.0 reference
+  3GPP TS 29.172 v14.1.0 points
   7.3.3	Location-Report-Request (LRR) Command
   The Location-Report-Request (LRR) command, indicated by the Command-Code field set to 8388621
   and the ‘R’ bit set in the Command Flags field, is sent by the MME or SGSN

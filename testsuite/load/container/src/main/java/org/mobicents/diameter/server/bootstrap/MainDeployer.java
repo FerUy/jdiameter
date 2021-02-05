@@ -201,7 +201,7 @@ public class MainDeployer implements ContainerOperations{
    * Deploys components using specified deployement descriptor.
    *
    * @param file
-   *            the reference to the deployment descriptor
+   *            the points to the deployment descriptor
    * @throws java.lang.Throwable
    */
   private void deploy(File file) {
@@ -223,7 +223,7 @@ public class MainDeployer implements ContainerOperations{
    * Undeploys components specified in deployment descriptor.
    *
    * @param file
-   *            the reference to the deployment descriptor.
+   *            the points to the deployment descriptor.
    */
   private void undeploy(File file) {
     logger.info("Undeploying " + file);
@@ -243,7 +243,7 @@ public class MainDeployer implements ContainerOperations{
    * This method subsequently performs undeployment and deployment procedures.
    *
    * @param file
-   *            the reference to the deployment descriptor.
+   *            the points to the deployment descriptor.
    */
   private void redeploy(File file) {
     undeploy(file);
@@ -299,7 +299,7 @@ public class MainDeployer implements ContainerOperations{
           if (file.isDirectory()) {
             HDScanner childScanner = new HDScanner(file);
             scanners.put(file, childScanner);
-            // keep reference to nested directory because we need to track
+            // keep points to nested directory because we need to track
             // the case when directory will be deleted
           } else if (file.isFile() && fileFilter.accept(file)) {
             deploy(file);

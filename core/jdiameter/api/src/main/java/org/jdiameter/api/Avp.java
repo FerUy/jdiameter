@@ -662,9 +662,19 @@ public interface Avp extends Wrapper, Serializable {
   int PRI_CHARGING_COLLECTION_FUNCTION = 621;
 
   /**
+   * Sh (3GPP TS 29.329) OC Supported Features AVP code (IETF RFC 7863)
+   */
+  int OC_SUPPORTED_FEATURES = 621;
+
+  /**
    * Cx/Dx (3GPP TS 29.229) Secondary Charging Collection Function Name AVP code
    */
   int SEC_CHARGING_COLLECTION_FUNCTION = 622;
+
+  /**
+   * Sh (3GPP TS 29.329) OC Feature Vector AVP code (IETF RFC 7863)
+   */
+  int OC_FEATURE_VECTOR = 622;
 
   /**
    * Cx/Dx (3GPP TS 29.229) User Authorization Type AVP code
@@ -718,8 +728,10 @@ public interface Avp extends Wrapper, Serializable {
 
   /**
    * Wildcarded PSI AVP code
+   * Wildcarded-Pubilc-Identity AVP code (Sh 3GPP TS 29.329)
    */
   int WILDCARDED_PSI = 634;
+  int WILDCARDED_PUBLIC_IDENTITY = 634;
 
   /**
    * Cx/Dx (3GPP TS 29.229) SIP Digest Authenticate AVP code
@@ -797,6 +809,10 @@ public interface Avp extends Wrapper, Serializable {
   int RESTORATION_INFO = 649;
 
   // Sh IMS Interface AVPs
+  /**
+   * Sh (3GPP TS 29.329) Session Priority AVP code
+   */
+  int SESSION_PRIORITY = 650;
 
   /**
    * Sh (3GPP TS 29.329) User Identity AVP code
@@ -834,7 +850,7 @@ public interface Avp extends Wrapper, Serializable {
   int CURRENT_LOCATION = 707;
 
   /**
-   * Sh (3GPP TS 29.329) identity Set AVP code
+   * Sh (3GPP TS 29.329) Identity Set AVP code
    */
   int IDENTITY_SET = 708;
 
@@ -852,6 +868,61 @@ public interface Avp extends Wrapper, Serializable {
    * Sh (3GPP TS 29.329) DSAI Tag AVP code
    */
   int DSAI_TAG = 711;
+
+  /**
+   * Sh (3GPP TS 29.329) One Time Notification AVP code
+   */
+  int ONE_TIME_NOTIFICATION = 712;
+
+  /**
+   * Sh (3GPP TS 29.329) Requested Nodes AVP code
+   */
+  int REQUESTED_NODES = 713;
+
+  /**
+   * Sh (3GPP TS 29.329) Serving Node Indication AVP code
+   */
+  int SERVING_NODE_INDICATION = 714;
+
+  /**
+   * Sh (3GPP TS 29.329) Repository Data ID AVP code
+   */
+  int REPOSITORY_DATA_ID = 715;
+
+  /**
+   * Sh (3GPP TS 29.329) Sequence Number AVP code
+   */
+  int SEQUENCE_NUMBER = 716;
+
+  /**
+   * Sh (3GPP TS 29.329) Pre-paging Supported AVP code
+   */
+  int PRE_PAGING_SUPPORTED = 717;
+
+  /**
+   * Sh (3GPP TS 29.329) Local Time Zone Indication AVP code
+   */
+  int LOCAL_TIME_ZONE_INDICATION = 718;
+
+  /**
+   * Sh (3GPP TS 29.329) UDR Flags AVP code
+   */
+  int UDR_FLAGS = 719;
+
+  /**
+   * Sh (3GPP TS 29.329) Call Reference Info AVP code
+   */
+  int CALL_REFERENCE_INFO = 720;
+
+  /**
+   * Sh (3GPP TS 29.329) Call Reference Number AVP code
+   */
+  int CALL_REFERENCE_NUMBER = 721;
+
+  /**
+   * Sh (3GPP TS 29.329) AS Number AVP code
+   */
+  int AS_NUMBER = 722;
 
   // Ro/Rf IMS Interfaces AVPs
 

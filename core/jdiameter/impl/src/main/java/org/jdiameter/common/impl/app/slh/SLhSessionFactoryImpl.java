@@ -23,6 +23,7 @@ package org.jdiameter.common.impl.app.slh;
 
 import org.jdiameter.api.Answer;
 import org.jdiameter.api.ApplicationId;
+import org.jdiameter.api.AvpDataException;
 import org.jdiameter.api.IllegalDiameterStateException;
 import org.jdiameter.api.InternalException;
 import org.jdiameter.api.OverloadException;
@@ -238,7 +239,7 @@ public class SLhSessionFactoryImpl implements ISLhSessionFactory, ServerSLhSessi
   }
 
   public void doLCSRoutingInfoRequestEvent(ServerSLhSession appSession, LCSRoutingInfoRequest request)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException {
     logger.info("Diameter SLh Session Factory :: doLCSRoutingInfoRequestEvent :: appSession[{}], Request[{}]", appSession, request);
   }
 
@@ -248,7 +249,7 @@ public class SLhSessionFactoryImpl implements ISLhSessionFactory, ServerSLhSessi
   }
 
   public void doLCSRoutingInfoAnswerEvent(ClientSLhSession appSession, LCSRoutingInfoRequest request, LCSRoutingInfoAnswer answer)
-      throws InternalException, IllegalDiameterStateException, RouteException, OverloadException {
+          throws InternalException, IllegalDiameterStateException, RouteException, OverloadException, AvpDataException {
     logger.info(
         "Diameter SLh Session Factory :: doLCSRoutingInfoAnswerEvent :: appSession[{}], Request[{}], Answer[{}]",
         new Object[] { appSession, request, answer });
